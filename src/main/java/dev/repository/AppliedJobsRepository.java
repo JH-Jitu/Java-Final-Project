@@ -1,6 +1,7 @@
 package dev.repository;
 
 import dev.domain.AppliedJobsEntity;
+import dev.domain.AvailableJobsEntity;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +21,17 @@ public class AppliedJobsRepository {
         this.sessionFactory = sessionFactory;
     }
 
+//    public void createAppliedJob(AppliedJobsEntity appliedJobsEntity) {
+//        try (Session session = sessionFactory.getCurrentSession()) {
+//            session.persist(appliedJobsEntity);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            throw e;
+//        }
+//    }
     public void createAppliedJob(AppliedJobsEntity appliedJobsEntity) {
-        try (Session session = sessionFactory.getCurrentSession()) {
-            session.persist(appliedJobsEntity);
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw e;
-        }
+        Session session = sessionFactory.getCurrentSession();
+        session.persist(appliedJobsEntity);
     }
 
     public void updateAppliedJob(AppliedJobsEntity appliedJobsEntity) {
@@ -46,9 +51,11 @@ public class AppliedJobsRepository {
     }
 
     public void deleteAppliedJob(Long appliedJobId) {
-        try (Session session = sessionFactory.getCurrentSession()) {
+        try (Session session = sessionFactory.openSession()) {
+//            session.beginTransaction();
             AppliedJobsEntity appliedJobsEntity = session.get(AppliedJobsEntity.class, appliedJobId);
             session.delete(appliedJobsEntity);
+//            session.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
             throw e;

@@ -1,5 +1,7 @@
 package dev.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -38,9 +40,11 @@ public class CompanyEntity {
     @Column(name = "owner_nid")
     private String ownerNID;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<AvailableJobsEntity> availableJobs;
 
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_email", referencedColumnName = "email")
     private UsersEntity user;

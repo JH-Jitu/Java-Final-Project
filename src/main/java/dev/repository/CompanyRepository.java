@@ -22,8 +22,15 @@ public class CompanyRepository {
     @Autowired
     private SessionFactory sessionFactory;
 
-    public List<CompanyEntity> getAllCompanies() {
-        return entityManager.createQuery("FROM CompanyEntity", CompanyEntity.class).getResultList();
+//    public List<CompanyEntity> getAllCompanies() {
+//        return entityManager.createQuery("FROM CompanyEntity", CompanyEntity.class).getResultList();
+//    }
+
+    public List getAllCompanies() {
+        try (Session session = sessionFactory.openSession()) {
+            Query query = session.createQuery("FROM CompanyEntity", CompanyEntity.class);
+            return query.getResultList();
+        }
     }
 
     public void createCompany(CompanyEntity companyEntity) {

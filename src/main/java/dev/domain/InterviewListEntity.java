@@ -15,11 +15,11 @@ public class InterviewListEntity {
     @JoinColumn(name = "applied_job_id")
     private AppliedJobsEntity appliedJob;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    private RecruiterEntity recruiter;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    private CompanyEntity company;
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    private RecruiterEntity recruiter;
+//
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    private CompanyEntity company;
 
     @Column(name = "google_meet_link")
     private String googleMeetLink;
@@ -30,12 +30,11 @@ public class InterviewListEntity {
     // Getters and setters
     public InterviewListEntity(){}
     // Constructor
-    public InterviewListEntity(Long id, AppliedJobsEntity appliedJob, RecruiterEntity recruiter,
-                               CompanyEntity company, String googleMeetLink, Date dateTime) {
+    public InterviewListEntity(Long id, AppliedJobsEntity appliedJob, String googleMeetLink, Date dateTime) {
         this.id = id;
         this.appliedJob = appliedJob;
-        this.recruiter = recruiter;
-        this.company = company;
+//        this.recruiter = recruiter;
+//        this.company = company;
         this.googleMeetLink = googleMeetLink;
         this.dateTime = dateTime;
     }
@@ -57,21 +56,21 @@ public class InterviewListEntity {
         this.appliedJob = appliedJob;
     }
 
-    public RecruiterEntity getRecruiter() {
-        return recruiter;
-    }
-
-    public void setRecruiter(RecruiterEntity recruiter) {
-        this.recruiter = recruiter;
-    }
-
-    public CompanyEntity getCompany() {
-        return company;
-    }
-
-    public void setCompany(CompanyEntity company) {
-        this.company = company;
-    }
+//    public RecruiterEntity getRecruiter() {
+//        return recruiter;
+//    }
+//
+//    public void setRecruiter(RecruiterEntity recruiter) {
+//        this.recruiter = recruiter;
+//    }
+//
+//    public CompanyEntity getCompany() {
+//        return company;
+//    }
+//
+//    public void setCompany(CompanyEntity company) {
+//        this.company = company;
+//    }
 
     public String getGoogleMeetLink() {
         return googleMeetLink;

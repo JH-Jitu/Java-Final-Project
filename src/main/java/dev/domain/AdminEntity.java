@@ -1,5 +1,7 @@
 package dev.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
@@ -43,6 +45,7 @@ public class AdminEntity {
     @Column(nullable = false)
     private String permissions;
 
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_email", referencedColumnName = "email")
     private UsersEntity user;

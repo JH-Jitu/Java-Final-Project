@@ -1,5 +1,7 @@
 package dev.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -50,6 +52,7 @@ public class ProfileEntity {
     @Column
     private Integer experiences;
 
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_email", referencedColumnName = "email")
     private UsersEntity user;
